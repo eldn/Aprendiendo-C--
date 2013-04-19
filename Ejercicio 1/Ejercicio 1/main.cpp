@@ -22,6 +22,7 @@ int main(int argc, const char * argv[])
         serie = serie + 1;
         c = c + 1;
     }
+    std::cout << "\nSe mostraron " << n << " números";
     
     return 0;
 }
