@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
     int c = 1;
     int n;
     int serie;
-    std::cout << "Cantidad de terminos:\n";
+    std::cout << "Cantidad de terminos: ";
     std::cin >> n;
     serie = n;
     while (c<=n) {
