@@ -10,7 +10,6 @@
 
 int main(int argc, const char * argv[])
 {
-    
     // insert code here...
     int c = 1;
     int n;

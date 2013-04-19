@@ -25,7 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B6462FE1721A16B008C7D21 /* Ejercicio 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Ejercicio 1"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6462FE1721A16B008C7D21 /* Ejercicio 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "Ejercicio 1"; path = "/Users/jpacora/Documents/repos-github/Aprendiendo C++/Ejercicio 1/build/Release/Ejercicio 1"; sourceTree = "<absolute>"; };
 		2B6463011721A16B008C7D21 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2B6463031721A16B008C7D21 /* Ejercicio_1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Ejercicio_1.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,16 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				2B6463001721A16B008C7D21 /* Ejercicio 1 */,
-				2B6462FF1721A16B008C7D21 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		2B6462FF1721A16B008C7D21 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2B6462FE1721A16B008C7D21 /* Ejercicio 1 */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		2B6463001721A16B008C7D21 /* Ejercicio 1 */ = {
@@ -103,7 +94,7 @@
 				en,
 			);
 			mainGroup = 2B6462F51721A16B008C7D21;
-			productRefGroup = 2B6462FF1721A16B008C7D21 /* Products */;
+			productRefGroup = 2B6462F51721A16B008C7D21;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
