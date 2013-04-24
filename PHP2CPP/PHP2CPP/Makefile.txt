@@ -1,0 +1,58 @@
+#!/bin/ksh
+###############################################################################
+# Filename       : Makefile
+# Tab Setting    : 4
+# Author         : nmotgi (Nitin Motgi nmotgi@cs.ucf.edu)
+# Created Date   : 2005/03/14 12:29:36
+# Recent Checkin : $Date: 2005/04/04 19:22:57 $
+# Revision No    : $Revision: 1.1 $
+#
+# Copyright (c) 2005 - 2010 to UCF. All rights reserved.
+#
+#-----------------------------------------------------------------------------
+# Revision History
+#-----------------------------------------------------------------------------
+# $Log: Makefile,v $
+# Revision 1.1  2005/04/04 19:22:57  nmotgi
+# Initial Version.
+#
+#
+###############################################################################
+
+IMTS_BASE=../../
+
+INCLUDES = -I.
+CXX = c++
+CXXFLAGS = $(INCLUDES)
+
+# We setup the suffixes for processing.
+.SUFFIXES: .cpp
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $<
+.cpp:
+	$(CXX) $(CXXFLAGS) $< -o $@
+
+SRC = php2cpp.cpp
+
+OBJ = $(addsuffix .o, $(basename $(SRC)))
+
+php2cpp: $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJ)
+
+depend:
+	makedepend $(CXXFLAGS) -Y $(SRC)
+
+distclean:
+	rm -rf $(OBJ)
+	rm -rf php2cpp
+	rm -rf itms_converted
+	
+clean:
+	rm -rf $(OBJ)
+
+deconv:
+	rm -rf itms_converted
+
+conv:
+	itms2cpp

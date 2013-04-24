@@ -1,0 +1,97 @@
+#!/bin/ksh
+###############################################################################
+# Filename       : itms2cpp
+# Tab Setting    : 4
+# Author         : nmotgi (Nitin Motgi nmotgi@cs.ucf.edu)
+# Created Date   : 2005/03/14 12:29:36
+# Recent Checkin : $Date: 2005/04/04 19:22:57 $
+# Revision No    : $Revision: 1.1 $
+#
+# Copyright (c) 2005 - 2010 to UCF. All rights reserved.
+#
+# This script is basically used to convert all the ITMS php code
+# to CPP class diagrams so that we can further convert the code
+# from CPP objects to Class diagrams.
+#
+#-----------------------------------------------------------------------------
+# Revision History
+#-----------------------------------------------------------------------------
+# $Log: itms2cpp,v $
+# Revision 1.1  2005/04/04 19:22:57  nmotgi
+# Initial Version.
+#
+#
+###############################################################################
+
+ITMS_BASE="$HOME/itms"
+PHP2CPP="$ITMS_BASE/scripts/php2cpp/php2cpp"
+
+
+function convert_to_cpp {
+#set -x
+
+	# We get the list of all the files that php extension in the
+	# ITMS source directory.
+	for filename in `ls -1 $ITMS_BASE/src/*.php`
+	do
+		php_file=`basename $filename`
+		echo "itms2cpp: Converting file $php_file ..."
+		$PHP2CPP $filename $filename.cpp 2> /dev/null 
+		if [ $? -ne 0 ] ; then
+			return 1;
+		fi
+	done
+
+	return 0;
+}
+
+function get_all_files_here {
+#set -x
+	for filename in `ls -1 $ITMS_BASE/src/*.php.cpp`
+	do
+		cpp_filename=`basename $filename`
+		if [ -f $ITMS_BASE/scripts/php2cpp/itms_converted/${cpp_filename} ] ; then
+			echo "itms2cpp: File already exists ... overwriting it."
+		fi
+
+		cp $filename $ITMS_BASE/scripts/php2cpp/itms_converted/${cpp_filename}
+		if [ $? -ne 0 ] ; then
+			return 1;
+		fi
+
+		rm -f $filename 2> /dev/null
+	done
+
+	return 0;
+}
+
+function get_total_php_files {
+#set -x
+
+	# We the total number of php files
+	# in ITMS_BASE/src/ directory.
+	php_file_cnt=`ls -1 $ITMS_BASE/src/*.php | wc -l`
+
+	if [ "X${php_file_cnt}X" == "XX" ] ; then
+		php_file_cnt="0";
+	fi
+	return $php_file_cnt;
+}
+
+echo "itms2cpp - ITMS PHP File to CPP Convertor."
+echo ""
+echo "Copyright 2001, Forrest J. Cavalier III d-b-a Mib Software"
+echo "Copyright 2005 to UCF. All rights reserved."
+echo ""
+
+save_pwd=`pwd`
+cd $ITMS_BASE/src
+convert_to_cpp
+cd $save_pwd
+
+mkdir $ITMS_BASE/scripts/php2cpp/itms_converted 2> /dev/null
+if [ $? -ne 0 ] ; then
+	echo "itms2cpp: Directory already exists ..."
+fi
+
+get_all_files_here
